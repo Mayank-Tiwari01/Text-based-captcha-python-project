@@ -5,6 +5,9 @@ import tkinter.messagebox # This import helps to give a Message box Module to th
 # Giving Text to the Captcha
 text = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 root = Tk()
+root.state('zoomed')
+root['background']='#f07167'
+
 
 # Giving Title to the System
 root.title("Captcha Application")
@@ -30,18 +33,36 @@ def set_captcha():
 def check():
     ## If it is Equal
     if captcha.get() == user_input.get():
-        tkinter.messagebox.showinfo("Sucess","Correct")
+        tkinter.messagebox.showinfo("Sucess","The user is allowed to move to the next page")
+        window=Tk()
+        window['background']='#f07167'
+        window.state('zoomed')
+        
+        
+        lbl=Label(window, text="Welcome to the Home Page!", fg='red', font=("Helvetica", 16))
+        lbl.place(x=60, y=50)
+        txtfld=Entry(window, text="Enter Registration Number", bd=5)
+        txtfld.place(x=80, y=100)
+        txtfld=Entry(window, text="Enter Registration Number", bd=5)
+        txtfld.place(x=80, y=150)
+        btn=Button(window, text="Log in", fg='blue')
+        btn.place(x=100, y=200)
+        window.title('Home Page')
+        window.geometry("900x600+30+30")
+        
+        window.mainloop()
     ## If it is not Equal
+
     else:
         tkinter.messagebox.showerror("Error","Incorrect")
         set_captcha()
 
 # This Widget Help to the set Things in Middle..
-middleframe=Frame(root)
-middleframe.pack(padx=10,pady=10)
+middleframe=Frame(root, width=500, height=10000)
+middleframe.pack(padx=100,pady=100)
 
 # Giving Label to Captcha
-Label(middleframe,textvariable = captcha, font = " Courier 30 overstrike bold",bg="yellow",relief=GROOVE).pack(pady=20)
+Label(middleframe,textvariable = captcha, font = " Courier 30 overstrike bold",bg="royal blue",relief=GROOVE).pack(pady=20)
 
 # Giving entry to the user_input
 Entry(middleframe,textvariable=user_input , font=" symbols 18").pack(padx=10)
